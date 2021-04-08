@@ -15,18 +15,18 @@ import java.io.IOException;
  *
  * @author Esteban
  */
-public class Matrix {
+public class elements {
     
     //comment from bazantm
     
-    private int mA[][], mB[][], mC[][], mD[][];
+    private int elements[][];
     private int rowA, columA, rowB, columB;
     private int max = 20, min = -10;
     private int valuesColums[], columsToChangeA[], columsToChangeB[];
     private int count = 0;
     private boolean swap = false;
 
-    public Matrix() {
+    public elements() {
 
     }
     Random rd = new Random();
@@ -36,10 +36,10 @@ public class Matrix {
         this.rowB = rd.nextInt(6) + 1;
         this.columA = rd.nextInt(6) + 1;
         this.columB = rd.nextInt(6) + 1;
-        this.mA = new int[this.rowA][this.columA];
-        this.mB = new int[this.rowB][this.columB];
-        this.mC = new int[this.rowA][this.columA];
-        this.mD = new int[this.rowB][this.columB];
+        this.elements = new int[this.rowA][this.columA];
+       // this.mB = new int[this.rowB][this.columB];
+       // this.mC = new int[this.rowA][this.columA];
+      //  this.mD = new int[this.rowB][this.columB];
         this.valuesColums = new int[this.columA];
         this.columsToChangeA = new int[this.columA];
         this.columsToChangeB = new int[this.columB];
@@ -56,11 +56,11 @@ public class Matrix {
 
             for (int j = 0; j < this.columA; j++) {
 
-                this.mA[i][j] = rd.nextInt(this.max) % (this.max - this.min + 1) + this.min;
+                this.elements[i][j] = rd.nextInt(this.max) % (this.max - this.min + 1) + this.min;
             }
         }
         //MatrixB
-        for (int i = 0; i < this.rowB; i++) {
+       /* for (int i = 0; i < this.rowB; i++) {
 
             for (int j = 0; j < this.columB; j++) {
 
@@ -72,7 +72,7 @@ public class Matrix {
 
             for (int j = 0; j < this.columA; j++) {
 
-                System.out.print(" " + mA[i][j]);
+                System.out.print(" " + elements[i][j]);
 
             }
             System.out.println("\t");
@@ -86,8 +86,9 @@ public class Matrix {
 
             }
             System.out.println("\t");
+        
         }
-
+*/
     }
 
     public void countColumsMatrixA() {
@@ -97,7 +98,7 @@ public class Matrix {
             this.count = 0;
             for (int j = 0; j < this.rowA; j++) {
 
-                aux = this.mA[j][i];
+                aux = this.elements[j][i];
                 this.count = aux + this.count;
             }
             if (this.count % 2 == 0) {
@@ -198,9 +199,9 @@ public class Matrix {
                         this.mC[i][j] = aux;*/
                         this.mC[i][j] = this.mB[i][j];
                     } else {
-                        /* aux = this.mA[i][j];
+                        /* aux = this.elements[i][j];
                     this.mC[i][j] = aux;*/
-                        this.mC[i][j] = this.mA[i][j];
+                        this.mC[i][j] = this.elements[i][j];
                     }
                 }
             }
@@ -222,9 +223,9 @@ public class Matrix {
                     if (this.columsToChangeB[j] == 1) {
                         /* aux = this.mB[i][j];
                         this.mC[i][j] = aux;*/
-                        this.mD[i][j] = this.mA[i][j];
+                        this.mD[i][j] = this.elements[i][j];
                     } else {
-                        /* aux = this.mA[i][j];
+                        /* aux = this.elements[i][j];
                     this.mC[i][j] = aux;*/
                         this.mD[i][j] = this.mB[i][j];
                     }
@@ -267,7 +268,7 @@ public class Matrix {
 
             for (int j = 0; j < this.columA; j++) {
 
-                file.write(" " + mA[i][j]);
+                file.write(" " + elements[i][j]);
 
             }
             file.write("\n");
