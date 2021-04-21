@@ -26,13 +26,15 @@ public class Task1 extends Application {
         
         stage.setScene(scene);
         stage.show();
-        elements matrix = new elements();
-        matrix.assignValues();
-        matrix.countColumsMatrixA();
-        matrix.checkColumsMatrixB();
-        matrix.swapColumn();
-        matrix.writeBefore();
-       // matrix.writeAfter();
+        Matrix mA = new Matrix(4,3);
+        mA.generateMatrix(-10, 10);
+        System.out.println(mA.toString());
+        Matrix mB = new Matrix(4,7);
+        mB.generateMatrix(-10, 10);
+        System.out.println(mB.toString());
+        mA.checkColumnOdd();
+        
+         
     }
 
     /**

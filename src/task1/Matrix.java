@@ -15,82 +15,104 @@ import java.io.IOException;
  *
  * @author Esteban
  */
-public class elements {
-    
+public class Matrix {
+
     //comment from bazantm
-    
     private int elements[][];
-    private int rowA, columA, rowB, columB;
+    private int columns;
     private int max = 20, min = -10;
-    private int valuesColums[], columsToChangeA[], columsToChangeB[];
+    // private int valuesColums[], columsToChangeA[], columsToChangeB[];
     private int count = 0;
     private boolean swap = false;
 
-    public elements() {
+    public Matrix(int rows, int colums) {
 
+        this.elements = new int[rows][colums];
+        this.columns = columns;
     }
-    Random rd = new Random();
+    // Random rd = new Random();
 
-    public void assignValues() {
-        this.rowA = rd.nextInt(6) + 1;
-        this.rowB = rd.nextInt(6) + 1;
-        this.columA = rd.nextInt(6) + 1;
-        this.columB = rd.nextInt(6) + 1;
-        this.elements = new int[this.rowA][this.columA];
-       // this.mB = new int[this.rowB][this.columB];
-       // this.mC = new int[this.rowA][this.columA];
-      //  this.mD = new int[this.rowB][this.columB];
-        this.valuesColums = new int[this.columA];
-        this.columsToChangeA = new int[this.columA];
-        this.columsToChangeB = new int[this.columB];
-        System.out.println("ROWA:" + rowA);
-        System.out.println("columA:" + columA);
-        System.out.println("ROWB:" + rowB);
-        System.out.println("columB:" + columB);
+    private int generateRandomElements(int a, int b) {
+
+        Random rd = new Random();
+        return a + rd.nextInt(b - a + 1);
     }
 
-    public void generateMatrix() {
+    public void generateMatrix(int a, int b) {
 
-        //MatrixA
-        for (int i = 0; i < this.rowA; i++) {
+        for (int i = 0; i < elements.length; i++) {
 
-            for (int j = 0; j < this.columA; j++) {
+            for (int j = 0; j < elements[0].length; j++) {
 
-                this.elements[i][j] = rd.nextInt(this.max) % (this.max - this.min + 1) + this.min;
+                this.elements[i][j] = generateRandomElements(a, b);
             }
         }
-        //MatrixB
-       /* for (int i = 0; i < this.rowB; i++) {
-
-            for (int j = 0; j < this.columB; j++) {
-
-                this.mB[i][j] = rd.nextInt(this.max) % (this.max - this.min + 1) + this.min;
-            }
-        }
-        //Show the matrix
-        for (int i = 0; i < this.rowA; i++) {
-
-            for (int j = 0; j < this.columA; j++) {
-
-                System.out.print(" " + elements[i][j]);
-
-            }
-            System.out.println("\t");
-        }
-        System.out.println("\t");
-        for (int i = 0; i < this.rowB; i++) {
-
-            for (int j = 0; j < this.columB; j++) {
-
-                System.out.print(" " + mB[i][j]);
-
-            }
-            System.out.println("\t");
-        
-        }
-*/
     }
 
+    private int getSumOfColumn(int columnIndex) {
+        int sum = 0;
+
+        for (int i = 0; i < elements.length; i++) {
+            sum += elements[i][columnIndex];
+        }
+
+        return sum;
+    }
+
+    private boolean isElementSumColumnOdd(int columnIndex) {
+        boolean result = false;
+
+        int sum = getSumOfColumn(columnIndex);
+
+        if (sum % 2 == 1) {
+            result = true;
+        }
+        return result;
+    }
+
+    void checkColumnOdd() {
+
+        for (int i = 0; i < elements[0].length; i++) {
+            if (isElementSumColumnOdd(i)) {
+                System.out.println("Column " + i + " is odd");
+            }
+        }
+    }
+
+    public int getNumbersColumns() {
+
+        return this.columns;
+    }
+
+    public void checkAvaibleColumn(int nCol) {
+
+        for (int i = 0; i < elements[0].length; i++) {
+            if (i <= nCol) {
+                if (isElementSumColumnOdd(i)) {
+                    System.out.println("Column " + i + " has to be changed in both matrix");
+                }
+            }
+
+            /* if (isElementSumColumnOdd(i)) {
+                System.out.println("Column " + i + " has to be changed");
+            }*/
+        }
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < elements.length; i++) {
+            for (int j = 0; j < elements[0].length; j++) {
+                sb.append(String.format("%6d", elements[i][j]));
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+}
+/*
     public void countColumsMatrixA() {
 
         int aux = 0;
@@ -179,9 +201,9 @@ public class elements {
             System.out.println("COLUMNAS A : " + this.valuesColums[i]);
             System.out.println("COLUMNAS CAMBIADAS: " + this.columsToChangeB[i]);
         }*/
-    }
-
-    public void swapColumn() throws NumberOfRowsException  {
+// }
+/*
+    public void swapColumn() throws NumberOfRowsException {
         int count = 0;
 
         //int dif=0;
@@ -197,11 +219,11 @@ public class elements {
                     if (this.columsToChangeA[j] == 1) {
                         /* aux = this.mB[i][j];
                         this.mC[i][j] = aux;*/
-                        this.mC[i][j] = this.mB[i][j];
+ /*                 this.mC[i][j] = this.mB[i][j];
                     } else {
                         /* aux = this.elements[i][j];
                     this.mC[i][j] = aux;*/
-                        this.mC[i][j] = this.elements[i][j];
+ /*         this.mC[i][j] = this.elements[i][j];
                     }
                 }
             }
@@ -223,11 +245,11 @@ public class elements {
                     if (this.columsToChangeB[j] == 1) {
                         /* aux = this.mB[i][j];
                         this.mC[i][j] = aux;*/
-                        this.mD[i][j] = this.elements[i][j];
+ /*          this.mD[i][j] = this.elements[i][j];
                     } else {
                         /* aux = this.elements[i][j];
                     this.mC[i][j] = aux;*/
-                        this.mD[i][j] = this.mB[i][j];
+ /*             this.mD[i][j] = this.mB[i][j];
                     }
                 }
             }
@@ -254,7 +276,7 @@ public class elements {
         } else {
 
             throw new NumberOfRowsException("The numbers of row aren´t the same");
-          //  System.out.println("No se cambian por las filas");
+            //  System.out.println("No se cambian por las filas");
         }
     }
 
@@ -287,9 +309,9 @@ public class elements {
         }
 
         file.close();
-    }
+    }*/
 
-    /*public void writeAfter() throws IOException {
+ /*public void writeAfter() throws IOException {
 
         for (int l = 0; l < this.columsToChangeA.length; l++) {
 
@@ -329,4 +351,4 @@ public class elements {
             file.close();
         }
     }*/
-}
+//}
