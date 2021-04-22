@@ -20,17 +20,12 @@ public class Matrix {
     //comment from bazantm
     private int elements[][];
     private int columns;
-    private int max = 20, min = -10;
-    // private int valuesColums[], columsToChangeA[], columsToChangeB[];
-    private int count = 0;
-    private boolean swap = false;
 
     public Matrix(int rows, int colums) {
 
         this.elements = new int[rows][colums];
-        this.columns = columns;
+
     }
-    // Random rd = new Random();
 
     private int generateRandomElements(int a, int b) {
 
@@ -70,21 +65,65 @@ public class Matrix {
         return result;
     }
 
-    void checkColumnOdd() {
+    List<Number> checkColumnOdd() {
 
+        List<Number> valuesOfColumns = new ArrayList<>();
         for (int i = 0; i < elements[0].length; i++) {
             if (isElementSumColumnOdd(i)) {
                 System.out.println("Column " + i + " is odd");
+                valuesOfColumns.add(i);
             }
         }
+        return valuesOfColumns;
     }
 
-    public int getNumbersColumns() {
+    List<Number> checkAvaibleColumns(List a) {
 
-        return this.columns;
+        List<Number> columnsToChange = new ArrayList<>();
+
+        if (a.size() >= elements[0].length) {
+            for (int i = 0; i < elements[0].length; i++) {
+                for (int j = 0; j < a.size(); j++) {
+                    if (a.get(j).equals(i)) {
+                        columnsToChange.add(i);
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < a.size(); i++) {
+                for (int j = 0; j < elements[0].length; j++) {
+                    if (a.get(i).equals(j)) {
+                        columnsToChange.add(i);
+                    }
+                }
+            }
+        }
+        return columnsToChange;
     }
 
-    public void checkAvaibleColumn(int nCol) {
+    public int[][] getMatrixA(int[][] mA) {
+
+        for (int i = 0; i < elements.length; i++) {
+
+            for (int j = 0; j < elements[0].length; j++) {
+
+                mA[i][j] = elements[i][j];
+            }
+        }
+
+        return mA;
+    }
+
+    List getNumbersColumns() {
+
+        List numberOfColumns = new ArrayList();
+        for (int i = 0; i < columns; i++) {
+            numberOfColumns.add(i);
+        }
+        return numberOfColumns;
+    }
+
+    /*  public void checkAvaibleColumn(int nCol) {
 
         for (int i = 0; i < elements[0].length; i++) {
             if (i <= nCol) {
@@ -93,12 +132,11 @@ public class Matrix {
                 }
             }
 
-            /* if (isElementSumColumnOdd(i)) {
+             if (isElementSumColumnOdd(i)) {
                 System.out.println("Column " + i + " has to be changed");
-            }*/
+            }
         }
-    }
-
+    }*/
     @Override
     public String toString() {
 
@@ -113,26 +151,7 @@ public class Matrix {
     }
 }
 /*
-    public void countColumsMatrixA() {
-
-        int aux = 0;
-        for (int i = 0; i < this.columA; i++) {
-            this.count = 0;
-            for (int j = 0; j < this.rowA; j++) {
-
-                aux = this.elements[j][i];
-                this.count = aux + this.count;
-            }
-            if (this.count % 2 == 0) {
-                this.valuesColums[i] = 0;
-            } else {
-                this.valuesColums[i] = 1; //It´s odd
-            }
-
-        }
-    }
-
-    public void checkColumsMatrixB() {
+ public void checkColumsMatrixB() {
 
         int aux = 0;
 

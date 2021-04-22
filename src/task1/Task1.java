@@ -5,6 +5,8 @@
  */
 package task1;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,25 +18,45 @@ import javafx.stage.Stage;
  * @author Esteban
  */
 public class Task1 extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
-        
-        
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
-        Matrix mA = new Matrix(4,3);
+        Matrix mA = new Matrix(4, 3);
         mA.generateMatrix(-10, 10);
         System.out.println(mA.toString());
-        Matrix mB = new Matrix(4,7);
+        Matrix mB = new Matrix(4, 7);
         mB.generateMatrix(-10, 10);
         System.out.println(mB.toString());
-        mA.checkColumnOdd();
+        List columnsA = new ArrayList();
+        columnsA = mA.checkColumnOdd();
         
-         
+        for (int i = 0; i <columnsA.size(); i++) {
+            System.out.println("Columns: "+columnsA.get(i));
+        }
+        
+        List columnsToChange = new ArrayList();
+        //List columnsB = new ArrayList();
+        //columnsB = mB.getNumbersColumns();
+        columnsToChange = mB.checkAvaibleColumns(columnsA);
+        int matrixA[][] = null;
+        mA.getMatrixA(matrixA);
+         for (int i = 0; i < matrixA.length; i++) {
+
+                for (int j = 0; j <matrixA[0].length; j++) {
+
+                    System.out.print(" " + matrixA[i][j]);
+                }
+                System.out.println("\t");
+            }
+       
+        for (int i = 0; i <columnsToChange.size(); i++) {
+            System.out.println("Columns To Change: "+columnsToChange.get(i));
+        }
+
     }
 
     /**
@@ -43,5 +65,5 @@ public class Task1 extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
