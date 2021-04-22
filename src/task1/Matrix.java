@@ -123,20 +123,6 @@ public class Matrix {
         return numberOfColumns;
     }
 
-    /*  public void checkAvaibleColumn(int nCol) {
-
-        for (int i = 0; i < elements[0].length; i++) {
-            if (i <= nCol) {
-                if (isElementSumColumnOdd(i)) {
-                    System.out.println("Column " + i + " has to be changed in both matrix");
-                }
-            }
-
-             if (isElementSumColumnOdd(i)) {
-                System.out.println("Column " + i + " has to be changed");
-            }
-        }
-    }*/
     @Override
     public String toString() {
 
