@@ -32,7 +32,9 @@ public class Task1 extends Application {
         mB.generateMatrix(-10, 10);
         System.out.println(mB.toString());
         List columnsA = new ArrayList();
-        columnsA = mA.checkColumnOdd();
+        //columnsA = mA.checkColumnOdd();
+        
+        mA.swapColumns(mB);
         
         for (int i = 0; i <columnsA.size(); i++) {
             System.out.println("Columns: "+columnsA.get(i));

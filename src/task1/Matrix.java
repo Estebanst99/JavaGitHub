@@ -65,19 +65,50 @@ public class Matrix {
         return result;
     }
 
-    List<Number> checkColumnOdd() {
+    public void swapColumns(Matrix m) {
+        for (int i = 0; i < elements[0].length; i++) {
+            if (isElementSumColumnOdd(i)) {
+                //check if in other matrix is this column available
+                if (isColumnAvailable(m, i)) {
+                    // perform swap
+                    
+                }
+                
+            }
+            
+        }
+    }
+    
+    
+    private List<Number> checkColumnOdd() {
 
         List<Number> valuesOfColumns = new ArrayList<>();
         for (int i = 0; i < elements[0].length; i++) {
             if (isElementSumColumnOdd(i)) {
-                System.out.println("Column " + i + " is odd");
-                valuesOfColumns.add(i);
+                for (int j = 0; j < elements.length; j++) {
+                    int[] element = elements[j];
+                    
+                }
+                
             }
         }
         return valuesOfColumns;
     }
 
-    List<Number> checkAvaibleColumns(List a) {
+    private boolean isColumnAvailable(Matrix matrix, int index) {
+        boolean result = false;
+
+        try {
+            int value = matrix.elements[0][index];
+            result = true;
+        } catch (ArrayIndexOutOfBoundsException ex) {
+
+        }
+
+        return result;
+    }
+
+    private List<Number> checkAvaibleColumns(List a) {
 
         List<Number> columnsToChange = new ArrayList<>();
 
@@ -101,17 +132,17 @@ public class Matrix {
         return columnsToChange;
     }
 
-    public int[][] getMatrixA(int[][] mA) {
-
+    public int[][] getMatrixA() {
+        int[][] copyOfElements = new int[elements.length][elements[0].length];
         for (int i = 0; i < elements.length; i++) {
 
             for (int j = 0; j < elements[0].length; j++) {
 
-                mA[i][j] = elements[i][j];
+                copyOfElements[i][j] = elements[i][j];
             }
         }
 
-        return mA;
+        return copyOfElements;
     }
 
     List getNumbersColumns() {
