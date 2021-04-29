@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package task1;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,12 +13,10 @@ import java.nio.file.Paths;
  */
 public class Matrix {
 
-    //comment from bazantm
-    final char SEPARATOR = ' ';
-
+    final char SEPARATOR = ';';
     private int elements[][];
-    private int columns;
-
+   
+   
     public Matrix(int rows, int colums) {
 
         this.elements = new int[rows][colums];
@@ -99,7 +87,7 @@ public class Matrix {
         //} catch (NumberOfRowsException msg) {
         //   a = "The rows are not the same";
         //}
- 
+
     }
 
     private boolean checkSameNumbersOfRows(Matrix m) {
@@ -149,9 +137,9 @@ public class Matrix {
                 }
                 writer.write(line);
                 writer.newLine();
-               //line = new String();
+                //line = new String();
+                writer.close();
             }
-            writer.close();
         } catch (IOException ex) {
             System.err.println("IOExceptin");
         }
