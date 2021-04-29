@@ -1,28 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package task1;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
  * @author Esteban
  */
 public class Matrix {
+    final char SEPARATOR = ';';
 
-    //comment from bazantm
-    private int elements[][];
-    private int columns;
+    private final int elements[][];
 
     public Matrix(int rows, int colums) {
 
@@ -132,30 +124,23 @@ public class Matrix {
         return sb.toString();
     }
 
-    public void writeBefore() throws IOException {
-
-        FileWriter file = new FileWriter("C:\\Users\\esteb\\OneDrive\\Documentos\\NetBeansProjects\\Task1\\file.txt");
-
+    public void writeBefore(String fileName) throws IOException {
+        Path path = Paths.get(fileName);
         
-     if (file.exists()) {
-           FileReader fr =new FileReader(file);
-           BufferedReader br=new BufferedReader(fr);
-           
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             
+            for (int i = 0; i < elements.length; i++) {
+                String line = "";
+                for (int j = 0; j < elements[0].length; j++) {
+                    line += elements[i][j] + SEPARATOR;                    
+                }
+                writer.write(line);
+                line = new String();
             }
-        } else{
-        
-        FileWriter fw=new FileWriter(archivo);
-        BufferedWriter bw=new BufferedWriter(fw);
-      
-
-        
-           bw.write(""+n);
-           bw.flush();
-
+            writer.close();
+        } catch (IOException ex) {
+            System.err.println("IOExceptin");
         }
-
-        file.close();
     }
 
 }
