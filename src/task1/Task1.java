@@ -21,6 +21,7 @@ public class Task1 extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        String fileName = "C:\\Users\\esteb\\OneDrive\\Documentos\\NetBeansProjects\\MatrixEsteban\\file.txt";
         Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -28,22 +29,24 @@ public class Task1 extends Application {
         Matrix mA = new Matrix(4, 3);
         mA.generateMatrix(-10, 10);
         System.out.println(mA.toString());
-        Matrix mB = new Matrix(3, 7);
+         mA.write(fileName);
+        Matrix mB = new Matrix(4, 7);
         mB.generateMatrix(-10, 10);
         System.out.println(mB.toString());
-        List columnsA = new ArrayList();
-        //columnsA = mA.checkColumnOdd();
-        
+
         mA.swapColumns(mB);
+            System.out.println(mA.toString());
+            System.out.println(mB.toString());
         
-        System.out.println(mA.toString());
-        System.out.println(mB.toString());
-       // List columnsToChange = new ArrayList();
+
+       // mA.write(fileName);
+       // mB.write(fileName);
+        // List columnsToChange = new ArrayList();
         //List columnsB = new ArrayList();
         //columnsB = mB.getNumbersColumns();
         //columnsToChange = mB.checkAvaibleColumns(columnsA);
         //int matrixA[][] = null;
-       // mA.getMatrixA(matrixA);
+        // mA.getMatrixA(matrixA);
     }
 
     /**

@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -21,6 +24,8 @@ import java.io.IOException;
 public class Matrix {
 
     //comment from bazantm
+    final char SEPARATOR = ' ';
+
     private int elements[][];
     private int columns;
 
@@ -71,31 +76,30 @@ public class Matrix {
     public void swapColumns(Matrix m) {
 
         int aux;
-        String a;
 
-        try {
-            if (checkSameNumbersOfRows(m)) {
+        //String a;
+        //try {
+        if (checkSameNumbersOfRows(m)) {
 
-                for (int i = 0; i < elements[0].length; i++) {
-                    if (isElementSumColumnOdd(i)) {
-                        System.out.println("La columna " + i + " es impar");
-                        //check if in other matrix is this column available
-                        if (isColumnAvailable(m, i)) {
-                            // perform swap
-                            for (int j = 0; j < elements.length; j++) {
-                                aux = elements[j][i];
-                                elements[j][i] = m.elements[j][i];
-                                m.elements[j][i] = aux;
-                            }
+            for (int i = 0; i < elements[0].length; i++) {
+                if (isElementSumColumnOdd(i)) {
+                    System.out.println("La columna " + i + " es impar");
+                    //check if in other matrix is this column available
+                    if (isColumnAvailable(m, i)) {
+                        // perform swap
+                        for (int j = 0; j < elements.length; j++) {
+                            aux = elements[j][i];
+                            elements[j][i] = m.elements[j][i];
+                            m.elements[j][i] = aux;
                         }
-
                     }
-
                 }
             }
-        } catch (NumberOfRowsException msg) {
-            a = "The rows are not the same";
         }
+        //} catch (NumberOfRowsException msg) {
+        //   a = "The rows are not the same";
+        //}
+ 
     }
 
     private boolean checkSameNumbersOfRows(Matrix m) {
@@ -132,30 +136,25 @@ public class Matrix {
         return sb.toString();
     }
 
-    public void writeBefore() throws IOException {
+    public void write(String fileName) throws IOException {
 
-        FileWriter file = new FileWriter("C:\\Users\\esteb\\OneDrive\\Documentos\\NetBeansProjects\\Task1\\file.txt");
+        Path path = Paths.get(fileName);
 
-        
-     if (file.exists()) {
-           FileReader fr =new FileReader(file);
-           BufferedReader br=new BufferedReader(fr);
-           
-            
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+
+            for (int i = 0; i < elements.length; i++) {
+                String line = "";
+                for (int j = 0; j < elements[0].length; j++) {
+                    line += elements[i][j] + SEPARATOR;
+                }
+                writer.write(line);
+                writer.newLine();
+               //line = new String();
             }
-        } else{
-        
-        FileWriter fw=new FileWriter(archivo);
-        BufferedWriter bw=new BufferedWriter(fw);
-      
-
-        
-           bw.write(""+n);
-           bw.flush();
-
+            writer.close();
+        } catch (IOException ex) {
+            System.err.println("IOExceptin");
         }
-
-        file.close();
     }
 
 }
