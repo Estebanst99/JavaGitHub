@@ -28,13 +28,17 @@ public class Task1 extends Application {
         Matrix mA = new Matrix(4, 3);
         mA.generateMatrix(-10, 10);
         System.out.println(mA.toString());
-        Matrix mB = new Matrix(4, 7);
+        Matrix mB = new Matrix(3, 7);
         mB.generateMatrix(-10, 10);
         System.out.println(mB.toString());
         List columnsA = new ArrayList();
         //columnsA = mA.checkColumnOdd();
         
         mA.swapColumns(mB);
+        
+        System.out.println(mA.toString());
+        System.out.println(mB.toString());
+        
         
         for (int i = 0; i <columnsA.size(); i++) {
             System.out.println("Columns: "+columnsA.get(i));
@@ -43,18 +47,10 @@ public class Task1 extends Application {
         List columnsToChange = new ArrayList();
         //List columnsB = new ArrayList();
         //columnsB = mB.getNumbersColumns();
-        columnsToChange = mB.checkAvaibleColumns(columnsA);
-        int matrixA[][] = null;
-        mA.getMatrixA(matrixA);
-         for (int i = 0; i < matrixA.length; i++) {
+        //columnsToChange = mB.checkAvaibleColumns(columnsA);
+        //int matrixA[][] = null;
+       // mA.getMatrixA(matrixA);
 
-                for (int j = 0; j <matrixA[0].length; j++) {
-
-                    System.out.print(" " + matrixA[i][j]);
-                }
-                System.out.println("\t");
-            }
-       
         for (int i = 0; i <columnsToChange.size(); i++) {
             System.out.println("Columns To Change: "+columnsToChange.get(i));
         }
