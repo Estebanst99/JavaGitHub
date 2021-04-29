@@ -38,23 +38,12 @@ public class Task1 extends Application {
         
         System.out.println(mA.toString());
         System.out.println(mB.toString());
-        
-        
-        for (int i = 0; i <columnsA.size(); i++) {
-            System.out.println("Columns: "+columnsA.get(i));
-        }
-        
-        List columnsToChange = new ArrayList();
+       // List columnsToChange = new ArrayList();
         //List columnsB = new ArrayList();
         //columnsB = mB.getNumbersColumns();
         //columnsToChange = mB.checkAvaibleColumns(columnsA);
         //int matrixA[][] = null;
        // mA.getMatrixA(matrixA);
-
-        for (int i = 0; i <columnsToChange.size(); i++) {
-            System.out.println("Columns To Change: "+columnsToChange.get(i));
-        }
-
     }
 
     /**

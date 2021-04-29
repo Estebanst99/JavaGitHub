@@ -5,6 +5,9 @@
  */
 package task1;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -133,14 +136,23 @@ public class Matrix {
 
         FileWriter file = new FileWriter("C:\\Users\\esteb\\OneDrive\\Documentos\\NetBeansProjects\\Task1\\file.txt");
 
-        try {
-
-            if () {
-                
+        
+     if (file.exists()) {
+           FileReader fr =new FileReader(file);
+           BufferedReader br=new BufferedReader(fr);
+           
+            
             }
-        } catch (IOException e) {
+        } else{
+        
+        FileWriter fw=new FileWriter(archivo);
+        BufferedWriter bw=new BufferedWriter(fw);
+      
 
-            e.printStackTrace();
+        
+           bw.write(""+n);
+           bw.flush();
+
         }
 
         file.close();
