@@ -22,7 +22,7 @@ public class Task1 extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        String fileName = "C:\\Users\\esteb\\OneDrive\\Documentos\\NetBeansProjects\\MatrixEsteban\\file.txt";
+        //String fileName = "file.txt";
         Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -30,24 +30,23 @@ public class Task1 extends Application {
         Matrix mA = new Matrix(4, 3);
         mA.generateMatrix(-10, 10);
         System.out.println(mA.toString());
-         mA.write(fileName);
+        mA.write("MartrixA-before.txt");
         Matrix mB = new Matrix(4, 7);
         mB.generateMatrix(-10, 10);
         System.out.println(mB.toString());
+        mB.write("MartrixB-before.txt");
 
         mA.swapColumns(mB);
-            System.out.println(mA.toString());
-            System.out.println(mB.toString());
-        
+        System.out.println(mA.toString());
+        System.out.println(mB.toString());
 
-       // mA.write(fileName);
-       // mB.write(fileName);
-        // List columnsToChange = new ArrayList();
-        //List columnsB = new ArrayList();
-        //columnsB = mB.getNumbersColumns();
-        //columnsToChange = mB.checkAvaibleColumns(columnsA);
-        //int matrixA[][] = null;
-        // mA.getMatrixA(matrixA);
+        mA.write("MartrixA-after.txt");
+        mB.write("MartrixB-after.txt");
+        
+        mA.readTextFile("MartrixA-after.txt");
+        
+        System.out.println(mA.toString());
+
     }
 
     /**
@@ -58,4 +57,3 @@ public class Task1 extends Application {
     }
 
 }
-
