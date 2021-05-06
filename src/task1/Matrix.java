@@ -149,26 +149,42 @@ public class Matrix {
         }
     }
 
-    public void readTextFile(String fileName) {
+    public static Matrix readTextFile(String fileName) {
 
+        Matrix m = null;
         File file = null;
         FileReader fr = null;
         BufferedReader br = null;
 
         try {
-
             file = new File(fileName);
             fr = new FileReader(file);
             br = new BufferedReader(fr);
 
-            String line = "";
-            int count = 0;
+            String line = null;
+            int rows = 0;
+            int columns = 0;
+
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
-                //Method to store the matrix, line with the values of the row, count is a variable to know in where row we are. 
-                storeMatrix(line, count);
-                count++;
+                
+                String[] values = line.split(" ");
+                columns = values.length;
+                rows++;
             }
+
+            br = new BufferedReader(fr);
+
+            m = new Matrix(rows, columns);
+            if ((line = br.readLine()) != null) {
+                for (int i = 0; i < rows; i++) {
+                    line = br.readLine();
+                    String[] values = line.split(" ");
+                    for (int j = 0; j < columns; j++) {
+                        m.elements[i][j] = Integer.parseInt(values[j].trim());
+                    }
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -181,18 +197,6 @@ public class Matrix {
                 e2.printStackTrace();
             }
         }
+        return m;
     }
-
-    private void storeMatrix(String line, int c) {
-
-        for (int i = 0; i < line.length(); i++) {
-            
-            //With the value of the count and the values of the row we store the matrix. 
-
-            this.elements[c][i] = line.charAt(i);
-
-        }
-
-    }
-
 }
