@@ -18,6 +18,7 @@ public class Matrix {
 
     final char SEPARATOR = ' ';
     private int elements[][];
+    private boolean b = false;
 
     public Matrix(int rows, int colums) {
 
@@ -66,6 +67,7 @@ public class Matrix {
     public void swapColumns(Matrix m) {
 
         int aux;
+        boolean b = false; 
 
         //String a;
         //try {
@@ -73,7 +75,7 @@ public class Matrix {
 
             for (int i = 0; i < elements[0].length; i++) {
                 if (isElementSumColumnOdd(i)) {
-                    System.out.println("La columna " + i + " es impar");
+                    System.out.println("The column " + i + " is odd");
                     //check if in other matrix is this column available
                     if (isColumnAvailable(m, i)) {
                         // perform swap
@@ -82,6 +84,8 @@ public class Matrix {
                             elements[j][i] = m.elements[j][i];
                             m.elements[j][i] = aux;
                         }
+                        b = true; 
+                        swapMethodBoolean(b);
                     }
                 }
             }
@@ -90,6 +94,18 @@ public class Matrix {
         //   a = "The rows are not the same";
         //}
 
+    }
+    
+    public void swapMethodBoolean (boolean b){
+        
+        
+        this.b = b ; 
+    }
+    
+    public boolean getCheckSwap(){    
+    
+        return this.b;
+    
     }
 
     private boolean checkSameNumbersOfRows(Matrix m) {
@@ -166,7 +182,7 @@ public class Matrix {
             int columns = 0;
 
             while ((line = br.readLine()) != null) {
-                
+
                 String[] values = line.split(" ");
                 columns = values.length;
                 rows++;
