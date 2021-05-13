@@ -56,8 +56,9 @@ public class Task1 extends Application {
             public void handle(Event event) {
 
                 boolean b = false;
-                b = mA.getCheckSwap();
+                
                 mA.swapColumns(mB);
+                b = mA.getCheckSwap();
 
                 if (b == true) {
 
@@ -100,10 +101,10 @@ public class Task1 extends Application {
         //System.out.println(mB.toString());
         mB.write("MartrixB-before.txt");
 
-        //System.out.println(mA.toString());
-        //System.out.println(mB.toString());
+        System.out.println(mA.toString());
+        System.out.println(mB.toString());
         mA.write("MartrixA-after.txt");
-        mB.write("MartrixB-after.txt");
+        mB.write("MartrixB-after.txt"); 
 
         mA.readTextFile("MartrixA-after.txt");
         mB.readTextFile("MartrixB-after.txt");

@@ -57,6 +57,10 @@ public class Matrix {
         boolean result = false;
 
         int sum = getSumOfColumn(columnIndex);
+        
+        if(sum < 0){
+        sum = sum * (-1);
+        }
 
         if (sum % 2 == 1) {
             result = true;
@@ -84,6 +88,7 @@ public class Matrix {
                             elements[j][i] = m.elements[j][i];
                             m.elements[j][i] = aux;
                         }
+                        
                         b = true; 
                         swapMethodBoolean(b);
                     }
@@ -97,15 +102,11 @@ public class Matrix {
     }
     
     public void swapMethodBoolean (boolean b){
-        
-        
         this.b = b ; 
     }
     
     public boolean getCheckSwap(){    
-    
         return this.b;
-    
     }
 
     private boolean checkSameNumbersOfRows(Matrix m) {
